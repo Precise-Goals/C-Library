@@ -1,13 +1,5 @@
 #include <math.h>
 #include <stdio.h>
-int fact(int a)
-{
-    if (a == 0 || a == 1) {
-        return 1;
-    }
-
-    return a * (a - 1);
-}
 int main()
 {
     // Write a program in C to find the sum of the series [x - x^3 + x^5 + ......].
@@ -20,11 +12,13 @@ int main()
     scanf("%d", &x);
     sum = (float)x;
     for (int i = 0; i < n; i++) {
+        int po = ((2 * i) + 1);
         if (i % 2 == 0) {
-            sum += (pow(x, ((2 * i) + 1)));
+            sum += (pow(x, po));
         } else {
-            sum -= (pow(x, ((2 * i) + 1)));
+            sum -= (pow(x, po));
         }
+        printf("Term %d: %.2f\n", i + 1, (pow(x, po)));
     }
     printf("The Sum of the series is %f\n", sum);
 

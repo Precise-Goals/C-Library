@@ -1,92 +1,79 @@
+#include <conio.h>
 #include <stdio.h>
-#include <conio.h> 
-#define MAX_SIZE 5
-int stack[MAX_SIZE];
-int top = -1; 
 
-int isFull() {
+#define MAX_SIZE 5
+
+int stack[MAX_SIZE];
+int top = -1;
+
+int isFull()
+{
     if (top == MAX_SIZE - 1) {
         return 1;
     }
     return 0;
 }
 
-
-int isEmpty() {
+int isEmpty()
+{
     if (top == -1) {
         return 1;
     }
     return 0;
 }
 
-void push(int data) {
+void push(int data)
+{
     if (isFull()) {
         printf("Stack Overflow! Cannot push %d.\n", data);
     } else {
-        top++; 
-        stack[top] = data; 
+        top++;
+        stack[top] = data;
         printf("%d pushed to stack.\n", data);
     }
 }
-int pop() {
+
+int pop()
+{
+    int data;
     if (isEmpty()) {
         printf("Stack Underflow! Cannot pop.\n");
-        return -1; 
+        return -1;
     } else {
-        int data = stack[top]; 
-        top--; 
+        data = stack[top];
+        top--;
         return data;
     }
 }
 
-int peek() {
+int peek()
+{
     if (isEmpty()) {
         printf("Stack is empty! Cannot peek.\n");
-        return -1; 
+        return -1;
     } else {
-        return stack[top]; 
+        return stack[top];
     }
 }
 
-void display() {
-    if (isEmpty()) {
-        printf("\nStack is empty.\n");
-    } else {
-        printf("\nStack (top to bottom):\n");
-        for (int i = top; i >= 0; i--) {
-            printf("%d\n", stack[i]);
-        }
-    }
-    printf("---------------------\n");
-}
+void main()
+{
+    // clrscr();
 
-void main() {
-    printf("--- Pushing elements ---\n");
+    printf("--- Pushing ---\n");
     push(10);
     push(20);
-    push(30);
-    display();
 
+    printf("\n--- Peeking ---\n");
     printf("Top element is: %d\n", peek());
-    display();
 
+    printf("\n--- Popping ---\n");
     printf("Popped: %d\n", pop());
-    display();
+    printf("Popped: %d\n", pop());
 
+    printf("\n--- Underflow Test ---\n");
     printf("Popped: %d\n", pop());
-    display();
-    
-    printf("Popped: %d\n", pop());
-    printf("Popped: %d\n", pop()); 
-    display();
 
-    push(1);
-    push(2);
-    push(3);
-    push(4);
-    push(5); 
-    display();
-    push(6); 
-    
+    printf("\nPress any key to exit...");
     getch();
 }

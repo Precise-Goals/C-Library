@@ -1,25 +1,46 @@
 #include <conio.h>
 #include <stdio.h>
 
-void LinearSearch(int customers[], int n, int t)
+int linearSearch(int arr[], int n, int key)
 {
     int i;
     for (i = 0; i < n; i++) {
-        if (customers[i] == t) {
-            printf("Customer ID is found at position %d", i);
-            return;
+        if (arr[i] == key) {
+            return i;
         }
     }
-    printf("Customer Id Not Found");
-    return;
+    return -1;
 }
 
 void main()
 {
     int customers[] = { 67, 56, 45, 86, 54, 22, 34, 12, 14, 78, 9 };
-    int n = sizeof(customers) / sizeof(customers[0]), t;
-    printf("Enter the Customer ID to Search: ");
-    scanf("%d", &t);
-    LinearSearch(customers, n, t);
+    int n = sizeof(customers) / sizeof(customers[0]);
+    int keyToFind;
+    int result;
+
+    // clrscr();
+
+    printf("Enter the key to find: ");
+    scanf("%d", &keyToFind);
+
+    result = linearSearch(customers, n, keyToFind);
+
+    if (result == -1) {
+        printf("\nID %d was NOT found.\n", keyToFind);
+    } else {
+        printf("\nID %d was FOUND at index %d.\n", keyToFind, result);
+    }
+
+    keyToFind = 100;
+    result = linearSearch(customers, n, keyToFind);
+
+    if (result == -1) {
+        printf("\nID %d was NOT found.\n", keyToFind);
+    } else {
+        printf("\nID %d was FOUND at index %d.\n", keyToFind, result);
+    }
+
+    printf("\nPress any key to exit...");
     getch();
 }
